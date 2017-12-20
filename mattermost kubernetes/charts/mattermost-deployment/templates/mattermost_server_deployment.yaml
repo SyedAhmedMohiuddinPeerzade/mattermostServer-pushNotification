@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.mattermostServerName }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: {{ .Chart.Name }}
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.imageRegistryServer }}/{{ .Values.imageRepoServer }}:{{ .Values.imageTagServer }}
+        imagePullPolicy: {{ default "IfNotPresent" .Values.imagePullPolicy | quote }}
+        env:
+        - name: DB_HOST
+          value: {{ .Values.databaseHost}}
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secretRef}}
+              key: database-port
+        - name: MM_PUSHNOTIFICATIONCONTENTS
+          value: {{ .Values.pushNotificationContents }}
+        - name: MM_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secretRef}}
+              key: database-username
+        - name: MM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secretRef}}
+              key: database-password
+        - name: MM_DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.secretRef}}
+              key: database-name
+        volumeMounts:
+        - name: etclocaltime
+          mountPath: /etc/localtime
+          readOnly: true
+      volumes:
+      - name: etclocaltime
+        hostPath:
+          path: /etc/localtime

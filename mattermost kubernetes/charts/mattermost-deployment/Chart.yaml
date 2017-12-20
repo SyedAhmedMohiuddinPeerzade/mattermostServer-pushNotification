@@ -1,0 +1,7 @@
+description: Helm chart for deploying mattermost in kubernetes.
+maintainers:
+- name: Syed Ahmed Mohiuddin Peerzade
+name: mattermost-deployment
+sources:
+- https://github.com/mattermost
+version: 0.0.1

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.pushProxyRcName }}
+  namespace: {{ .Values.namespace }}
+  labels: 
+    app: {{ .Values.pushProxyLabel }}
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: {{ .Values.pushProxyRcName }}
+      labels:
+        app: {{ .Values.pushProxyLabel }}
+    spec:
+       containers:
+       - name: {{ .Values.pushProxyRcName }}
+         image:  {{ .Values.imageRegistryPushProxy }}/{{ .Values.imageRepoPushProxy }}:{{ .Values.imageTagPushProxy }}
+         imagePullPolicy: {{ default "IfNotPresent" .Values.imagePullPolicy | quote }}
+         ports:
+         - containerPort: {{ .Values.pushProxyPort }}
+         env:
+         - name: {{ .Values.androidApiKeyName }}
+           valueFrom:
+             secretKeyRef:
+                name: {{ .Values.secretRef }}
+                key: android-api-key
+ 

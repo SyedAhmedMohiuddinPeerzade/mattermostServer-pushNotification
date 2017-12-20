@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.databaseHost }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.databaseRcName }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5432
+    targetPort: {{ .Values.databaseTargetPort }}
+    protocol: TCP
+    name: {{ .Values.databaseRcName }}
+  selector:
+    app: {{ .Values.databaseRcName }}

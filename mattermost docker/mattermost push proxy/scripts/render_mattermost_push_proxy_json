@@ -1,0 +1,21 @@
+#!/bin/sh
+
+cat << EOF > /config/mattermost-push-proxy.json
+{
+    "ListenAddress":":8066",
+    "ThrottlePerSec":300,
+    "ThrottleMemoryStoreSize":50000,
+    "ThrottleVaryByHeader":"X-Forwarded-For",
+    "EnableMetrics": false,
+    "AndroidPushSettings":[
+        {
+            "Type":"android",
+            "AndroidApiKey":"${ANDROIDAPIKEY}"
+        },
+        {
+            "Type":"android_rn",
+            "AndroidApiKey":"${ANDROIDAPIKEY}"
+        }
+    ]
+}
+EOF

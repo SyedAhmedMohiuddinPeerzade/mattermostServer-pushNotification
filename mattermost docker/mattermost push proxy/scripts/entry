@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+# render the required config using env vars
+/scripts/render_mattermost_push_proxy_json
+/scripts/push_proxy
