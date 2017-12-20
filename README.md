@@ -5,7 +5,7 @@ An attempt is made to integrate mattermost server app and push notification plug
 ## How to deploy
 make sure docker, kubernetes and helm are configured.
 
-Replace the value of AndroidApiKey in secret.yaml
+Replace the value of "android-api-key" in secret.yaml
 
 ```bash
 cd $PWD/kubernetes/charts/mattermost-deployment
