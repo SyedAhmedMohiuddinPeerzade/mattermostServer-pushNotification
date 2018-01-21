@@ -25,4 +25,13 @@ spec:
              secretKeyRef:
                 name: {{ .Values.secretRef }}
                 key: android-api-key
- 
+         - name: {{ .Values.applePushCertificateName }}
+           valueFrom:
+             secretKeyRef:
+                name: {{ .Values.secretRef }}
+                key: apple-push-certificate-name
+         - name: {{ .Values.applePushCertPassword }}
+           valueFrom:
+             secretKeyRef:
+                name: {{ .Values.secretRef }}
+                key: apple-push-cert-password
