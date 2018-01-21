@@ -28,7 +28,7 @@ cat << EOF > /config/mattermost-push-proxy.json
         {
             "Type":"apple_rn",
             "ApplePushUseDevelopment":false,
-            "ApplePushCertPrivate":${APPLEPUSHCERTPRIVATE},
+            "ApplePushCertPrivate":"./config/mattermost_production_priv.pem",
             "ApplePushCertPassword":${APPLEPUSHCERTPASSWORD},
             "ApplePushTopic":"com.mattermost.react.native"
         }
