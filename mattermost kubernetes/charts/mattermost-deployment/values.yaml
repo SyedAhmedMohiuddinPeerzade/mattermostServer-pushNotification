@@ -23,6 +23,5 @@ imageRepoPushProxy: "mattermost-push-proxy"
 imageTagPushProxy: "latest"
 imageTagServer: "latest"
 androidApiKeyName: "ANDROIDAPIKEY"
-
-
-
+applePushCertificateName: "APPLEPUSHCERTPRIVATE"
+applePushCertPassword: "APPLEPUSHCERTPASSWORD"
