@@ -16,6 +16,22 @@ cat << EOF > /config/mattermost-push-proxy.json
             "Type":"android_rn",
             "AndroidApiKey":"${ANDROIDAPIKEY}"
         }
+    ],
+    "ApplePushSettings":[
+        {
+            "Type":"apple",
+            "ApplePushUseDevelopment":false,
+            "ApplePushCertPrivate":${APPLEPUSHCERTPRIVATE},
+            "ApplePushCertPassword":${APPLEPUSHCERTPASSWORD},
+            "ApplePushTopic":"com.mattermost.Mattermost"
+        },
+        {
+            "Type":"apple_rn",
+            "ApplePushUseDevelopment":false,
+            "ApplePushCertPrivate":${APPLEPUSHCERTPRIVATE},
+            "ApplePushCertPassword":${APPLEPUSHCERTPASSWORD},
+            "ApplePushTopic":"com.mattermost.react.native"
+        }
     ]
 }
 EOF
