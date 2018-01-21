@@ -4,4 +4,5 @@ set -e
 
 # render the required config using env vars
 /scripts/render_mattermost_push_proxy_json
+mv /scripts/mattermost_production_priv.pem /config/mattermost_production_priv.pem
 /scripts/push_proxy
